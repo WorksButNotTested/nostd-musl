@@ -1,0 +1,27 @@
+[package]
+name = "nostd-musl"
+description = "Rust library containing  which XXXX-unknown-linux-gnu toolchains expect to find in `libc`, so that they can be linked without dependency on `libc` using `-nodefaultlibs`, `-nostartfiles` and `-nostdlib`."
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/WorksButNotTested/nostd-musl"
+keywords = ["nostd", "memory", "memcpy", "musl"]
+edition = "2024"
+rust-version = "1.85"
+categories = ["embedded", "os"]
+authors = [
+  "wfdewith <wf@dewith.io>",
+  "WorksButNotTested <62701594+WorksButNotTested@users.noreply.github.com>",
+]
+
+
+[lib]
+crate-type = ["rlib"]
+
+[features]
+default = ["optimized-assembly"]
+optimized-assembly = []
+
+[build-dependencies]
+bindgen = { version = "0.71.1" }
+cc = { version = "1.2.20" }
+just = { version = "1.40.0" }

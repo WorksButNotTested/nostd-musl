@@ -1,0 +1,34 @@
+name: Build and Publish to crates.io
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true        
+
+    - name: Run clippy
+      run: cargo clippy -- -D warnings
+
+    - name: Run fmt
+      run: cargo fmt -- --check
+
+    - name: Publish to crates.io
+      env:
+        CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+      run: |
+        cargo publish --token $CARGO_REGISTRY_TOKEN
