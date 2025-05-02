@@ -15,7 +15,9 @@ fn compile(file: &str, output: &str) {
 }
 
 fn build_bindings() {
-    let mut builder = bindgen::Builder::default().use_core();
+    let mut builder = bindgen::Builder::default()
+        .use_core()
+        .blocklist_type("max_align_t");
     let header_dir = PathBuf::from("include");
     for entry in fs::read_dir(&header_dir).unwrap() {
         let path = entry.unwrap().path();
