@@ -6,6 +6,7 @@ fn compile(file: &str, output: &str) {
         .opt_level(3)
         .flag("-Werror")
         .flag("-fno-stack-protector")
+        .flag("-U_FORTIFY_SOURCE")
         .flag("-D_FORTIFY_SOURCE=0")
         .flag("-ffunction-sections")
         .flag("-Wa,--noexecstack")
