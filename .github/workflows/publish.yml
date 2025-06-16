@@ -6,6 +6,7 @@ on:
       - main
     tags:
       - 'v*.*.*'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,7 +20,7 @@ jobs:
       uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
-        override: true        
+        override: true
 
     - name: Run clippy
       run: cargo clippy -- -D warnings
