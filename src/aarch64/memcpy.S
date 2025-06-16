@@ -79,7 +79,9 @@
 */
 
 .global memcpy
+#ifndef __APPLE__
 .type memcpy,%function
+#endif
 memcpy:
 	add     srcend, src, count
 	add     dstend, dstin, count
@@ -211,4 +213,6 @@ memcpy:
 	stp     C_l, C_h, [dstend, -16]
 	ret
 
+#ifndef __APPLE__
 .size memcpy,.-memcpy
+#endif

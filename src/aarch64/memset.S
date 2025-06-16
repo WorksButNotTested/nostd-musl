@@ -48,7 +48,9 @@
 #define zva_val x5
 
 .global memset
+#ifndef __APPLE__
 .type memset,%function
+#endif
 memset:
 
 	dup     v0.16B, valw
@@ -139,5 +141,7 @@ memset:
 	stp     q0, q0, [dstend, -32]
 	ret
 
+#ifndef __APPLE__
 .size memset,.-memset
 
+#endif
